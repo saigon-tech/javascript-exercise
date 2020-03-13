@@ -82,7 +82,7 @@
         }
         if (!birth.value) {
             messageBirth.innerHTML = "Can not be empty";
-            document.getElementById("birthday").style.border = "1px solid red";
+            birth.classList.add('validate-error');
         } else if (!birth.value.match(/(\d{4})-(\d{2})-(\d{2})/)) {
             messageBirth.innerHTML = "format must be YYYY-MM-DD";
             birth.classList.add('validate-error');
