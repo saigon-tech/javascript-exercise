@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <style>
@@ -14,34 +13,25 @@
     <input type="text" value="" id="loginID"/><br/>
     <div id="messageLoginID"></div>
     <br>
-
     <label for="password">Password:</label><br>
     <input type="password" value="" id="password"/><br/>
     <div id="messagePassword"></div>
     <br>
-
     <label for="name">Name:</label><br>
     <input type="text" value="" id="name"/><br/>
     <div id="messageName"></div>
     <br>
-
     <label for="birthday">Birthday:</label><br>
     <input type="text" value="" id="birthday" placeholder="YYYY-MM-DD"/><br/>
     <div id="messageBirthday"></div>
     <br>
-
     <label for="mail">Mail:</label><br>
     <input type="text" value="" id="mail"/><br/>
     <div id="messageMail"></div>
     <br>
-
     <input type="button" value="Submit" onclick="validate()"/>
 </form>
 <script language="javascript">
-
-    //loginIDVal.classList.add('validate-error');
-    //loginIDVal.classList.remove('validate-error');
-
     let loginID = document.getElementById("loginID");
     let messageLoginID = document.getElementById("messageLoginID");
     let passW = document.getElementById("password");
@@ -52,7 +42,6 @@
     let messageBirth = document.getElementById("messageBirthday");
     let mail = document.getElementById("mail");
     let messageMail = document.getElementById("messageMail");
-
     function validate() {
         if (!loginID.value) {
             messageLoginID.innerHTML = "Can not be empty";
@@ -105,8 +94,8 @@
         if (!mail.value) {
             messageMail.innerHTML = "Can not be empty";
             mail.classList.add('validate-error');
-        } else if (!mail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\					[[0-9]					{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-            messageMail.innerHTML = "You have entered format username@gmail.com"
+        } else if (!mail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            messageMail.innerHTML = "You have entered format username@gmail.com";
             mail.classList.add('validate-error');
             mail.value = "";
         } else {
