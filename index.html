@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         .validate-error {
             border: 1px solid red;
@@ -29,80 +30,77 @@
     <input type="text" value="" id="mail"/><br/>
     <div id="messageMail"></div>
     <br>
-    <input type="button" value="Submit" onclick="validate()"/>
+    <input id="submitBtn" type="button" value="Submit"/>
 </form>
 <script language="javascript">
-    let loginID = document.getElementById("loginID");
-    let messageLoginID = document.getElementById("messageLoginID");
-    let passW = document.getElementById("password");
-    let messagePassW = document.getElementById("messagePassword");
-    let name = document.getElementById("name");
-    let messageName = document.getElementById("messageName");
-    let birth = document.getElementById("birthday");
-    let messageBirth = document.getElementById("messageBirthday");
-    let mail = document.getElementById("mail");
-    let messageMail = document.getElementById("messageMail");
-    function validate() {
-        if (!loginID.value) {
-            messageLoginID.innerHTML = "Can not be empty";
-            loginID.classList.add('validate-error');
-        } else if (!loginID.value.match(/^[a-zA-Z]+$/)) {
-            messageLoginID.innerHTML = "Please Enter only alphabets in text";
-            loginID.classList.add('validate-error');
-            loginID.value = "";
-        } else {
-            messageLoginID.innerHTML = "";
-            loginID.classList.remove('validate-error');
+    $(function () {
+        function validate() {
+            if (!$('#loginID').val()) {
+                $('#messageLoginID').text("Can not be empty");
+                $('#loginID').addClass('validate-error');
+            } else if (!$('#loginID').val().match(/^[a-zA-Z]+$/)) {
+                $('#messageLoginID').text("Please Enter only alphabets in text");
+                $('#loginID').addClass('validate-error');
+                $('#loginID').val("");
+            } else {
+                $('#messageLoginID').text("");
+                $('#loginID').removeClass('validate-error');
+            }
+            if (!$('#password').val()) {
+                $('#messagePassword').text("Can not be empty");
+                $('#password').addClass('validate-error');
+            } else if ($('#password').val().length < 8) {
+                $('#messagePassword').text("You have entered less than 8 characters for password");
+                $('#password').addClass('validate-error');
+                $('#password').val("");
+            } else if (!$('#password').val().match(/^\S{3,}$/)) {
+                $('#messagePassword').text("White Space not allowed");
+                $('#password').addClass('validate-error');
+                $('#password').val("");
+            } else {
+                $('#messagePassword').text("");
+                $('#password').removeClass('validate-error');
+            }
+            if (!$('#name').val()) {
+                $('#messageName').text("Can not be empty");
+                $('#name').addClass('validate-error');
+            } else if (!$('#name').val().match(/^\S{3,}$/)) {
+                $('#messageName').text("You have entered less than 50 characters for name");
+                $('#name').addClass('validate-error');
+                $('#name').val("");
+            } else {
+                $('#messageName').text("");
+                $('#name').removeClass('validate-error');
+            }
+            if (!$('#birthday').val()) {
+                $('#messageBirthday').text("Can not be empty");
+                $('#birthday').addClass('validate-error');
+            } else if (!$('#birthday').val().match(/(\d{4})-(\d{2})-(\d{2})/)) {
+                $('#messageBirthday').text("format must be YYYY-MM-DD");
+                $('#birthday').addClass('validate-error');
+                $('#birthday').val("");
+            } else {
+                $('#messageBirthday').text("");
+                $('#birthday').removeClass('validate-error');
+            }
+            if (!$('#mail').val()) {
+                $('#messageMail').text("Can not be empty");
+                $('#mail').addClass('validate-error');
+            } else if (!$('#mail').val().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                $('#messageMail').text("You have entered format username@gmail.com");
+                $('#mail').addClass('validate-error');
+                $('#mail').val("");
+            } else {
+                $('#messageMail').text("");
+                $('#mail').removeClass('validate-error');
+            }
         }
-        if (!passW.value) {
-            messagePassW.innerHTML = "Can not be empty";
-            passW.classList.add('validate-error');
-        } else if (passW.value.length < 8) {
-            messagePassW.innerHTML = "You have entered less than 8 characters for password";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else if (!passW.value.match(/^\S{3,}$/)) {
-            messagePassW.innerHTML = "White Space not allowed";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else {
-            messagePassW.innerHTML = "";
-            passW.classList.remove('validate-error');
-        }
-        if (!name.value) {
-            messageName.innerHTML = "Can not be empty";
-            name.classList.add('validate-error');
-        } else if (!name.value.match(/^\S{3,}$/)) {
-            messageName.innerHTML = "You have entered less than 50 characters for name";
-            name.classList.add('validate-error');
-            name.value = "";
-        } else {
-            messageName.innerHTML = "";
-            name.classList.remove('validate-error');
-        }
-        if (!birth.value) {
-            messageBirth.innerHTML = "Can not be empty";
-            birth.classList.add('validate-error');
-        } else if (!birth.value.match(/(\d{4})-(\d{2})-(\d{2})/)) {
-            messageBirth.innerHTML = "format must be YYYY-MM-DD";
-            birth.classList.add('validate-error');
-            birth.value = "";
-        } else {
-            messageBirth.innerHTML = "";
-            birth.classList.remove('validate-error');
-        }
-        if (!mail.value) {
-            messageMail.innerHTML = "Can not be empty";
-            mail.classList.add('validate-error');
-        } else if (!mail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-            messageMail.innerHTML = "You have entered format username@gmail.com";
-            mail.classList.add('validate-error');
-            mail.value = "";
-        } else {
-            messageMail.innerHTML = "";
-            mail.classList.remove('validate-error');
-        }
-    }
+
+        $('#submitBtn').click(function () {
+            validate();
+        });
+    });
 </script>
 </body>
 </html>
+
