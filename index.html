@@ -33,6 +33,15 @@
     <input id="submitBtn" type="button" value="Submit"/>
 </form>
 <script language="javascript">
+    var lg_id = $('#lg_id')[0];
+    switch (true) {
+        case !lg_id.value:
+            messagePassW.innerHTML = "Can not be empty";
+            break;
+        case !lg_id.value.length < 8:
+            messagePassW.innerHTML = "Can not be empty";
+            break;
+    }
     $(function () {
         function validate() {
             if (!$('#loginID').val()) {
