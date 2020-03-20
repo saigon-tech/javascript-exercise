@@ -18,29 +18,35 @@
         img {
             vertical-align: middle;
         }
+
         .banner {
             position: relative;
             margin: auto;
             margin-top: 70px;
         }
+
         .banner__arrow {
             z-index: 1;
         }
+
         .mySlides {
             display: none;
             overflow: hidden;
             height: 100%;
             position: relative;
         }
+
         .mySlides-img {
             position: absolute;
         }
+
         .fade {
             -webkit-animation-name: fade;
             -webkit-animation-duration: 1.5s;
             animation-name: fade;
             animation-duration: 1.5s;
         }
+
         @-webkit-keyframes fade {
             from {
                 opacity: .4
@@ -49,6 +55,7 @@
                 opacity: 1
             }
         }
+
         @keyframes fade {
             from {
                 opacity: .4
@@ -57,9 +64,11 @@
                 opacity: 1
             }
         }
+
         .active, .dot:hover {
             background-color: black;
         }
+
         #btn-back-to-top {
             transition: background-color .3s,
             opacity .5s, visibility .5s;
@@ -67,6 +76,7 @@
             visibility: hidden;
             z-index: 1000;
         }
+
         #btn-back-to-top.show {
             opacity: 1;
             visibility: visible;
@@ -92,15 +102,15 @@
 </header>
 
 <article class="banner">
-    <span class="banner__arrow banner__arrow--left" onclick="plusSlides(-1)"><i class="fas fa-chevron-left "></i></span>
-    <span class="banner__arrow banner__arrow--right" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></span>
+    <span id ="btn-prev" class="banner__arrow banner__arrow--left"><i class="fas fa-chevron-left "></i></span>
+    <span id ="btn-next" class="banner__arrow banner__arrow--right"><i class="fas fa-chevron-right"></i></span>
     <div class="mySlides fade"><img class="mySlides-img" src="./assets/img/055053.jpg" style="width:100%"></div>
     <div class="mySlides fade"><img src="./assets/img/unnamed.jpg" style="width:100%"></div>
     <div class="mySlides fade"><img src="./assets/img/01A982.jpg" style="width:100%"></div>
     <ul class="banner__indicators">
-        <li class="banner__indicators-item banner__indicators-item--round dot" onclick="currentSlide(1)"></li>
-        <li class="banner__indicators-item banner__indicators-item--round dot" onclick="currentSlide(2)"></li>
-        <li class="banner__indicators-item banner__indicators-item--round dot" onclick="currentSlide(3)"></li>
+        <li id="btn-dot-1" class="banner__indicators-item banner__indicators-item--round dot"></li>
+        <li  id="btn-dot-2" class="banner__indicators-item banner__indicators-item--round dot"></li>
+        <li  id="btn-dot-3" class="banner__indicators-item banner__indicators-item--round dot"></li>
     </ul>
 </article>
 
@@ -199,53 +209,64 @@
     <div class="back-home" id="btn-back-to-top"><a><i class="fas fa-chevron-up"></i></a></div>
 </footer>
 <script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-        slideIndex = slideIndex + n;
+        var slideIndex = 1;
         showSlides(slideIndex);
-    }
+        function plusSlides(n) {
+            slideIndex = slideIndex + n;
+            showSlides(slideIndex);
+        }
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlides(slideIndex);
+        }
+        function showSlides(n) {
+            var i;
+            let slides = $('.mySlides');
+            let dots = $('.dot');
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+        $('#btn-prev').click(function () {
+            plusSlides(-1)
+        });
+        $('#btn-next').click(function () {
+            plusSlides(1)
+        });
+        $('#btn-dot-1').click(function () {
+            currentSlide(1)
+        });
+        $('#btn-dot-2').click(function () {
+            currentSlide(2)
+        });
+        $('#btn-dot-3').click(function () {
+            currentSlide(3)
+        });
+        // btn back to top
+        var btn = $('#btn-back-to-top');
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 20) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, '20');
+        });
 
-    function currentSlide(n) {
-        slideIndex = n;
-        showSlides(slideIndex);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-    }
-    // btn back to top
-    var btn = $('#btn-back-to-top');
-
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > 20) {
-            btn.addClass('show');
-        } else {
-            btn.removeClass('show');
-        }
-    });
-
-    btn.on('click', function(e) {
-        e.preventDefault();
-        $('html, body').animate({scrollTop:0}, '20');
-    });
 </script>
 </body>
 </html>
