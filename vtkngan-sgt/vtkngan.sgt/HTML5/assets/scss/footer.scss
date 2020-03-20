@@ -1,0 +1,21 @@
+footer {
+    .back-home {
+        background-color: #00679A ;
+        padding: 5px 11px;
+        position: fixed;
+        z-index: 100;
+        bottom: 50px;
+        right: 20px;
+        a {
+            color: white;
+        }
+    }
+    p {
+        text-align: center;
+        color: white;
+        font-size: 10px;
+        background-color: #00679A;
+        margin: 80px 0 0 0;
+        padding: 10px;
+    }
+}
