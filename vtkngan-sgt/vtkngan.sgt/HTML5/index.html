@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="format-detection" content="telephone=no">
@@ -27,12 +28,12 @@
         }
         .mySlides {
             display: none;
-            overflow:hidden;
+            overflow: hidden;
             height: 100%;
             position: relative;
         }
         .mySlides-img {
-            position: absolute ;
+            position: absolute;
         }
         .fade {
             -webkit-animation-name: fade;
@@ -41,17 +42,34 @@
             animation-duration: 1.5s;
         }
         @-webkit-keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
         }
-
         @keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
         }
-
         .active, .dot:hover {
             background-color: black;
+        }
+        #btn-back-to-top {
+            transition: background-color .3s,
+            opacity .5s, visibility .5s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        #btn-back-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
@@ -178,34 +196,56 @@
 </main>
 <footer>
     <p>Copy &copy; ABCD Corporation. All Right Resered</p>
-    <div class="back-home"><a href="#top"><i class="fas fa-chevron-up"></i></a></div>
+    <div class="back-home" id="btn-back-to-top"><a><i class="fas fa-chevron-up"></i></a></div>
 </footer>
 <script>
     var slideIndex = 1;
     showSlides(slideIndex);
+
     function plusSlides(n) {
         slideIndex = slideIndex + n;
         showSlides(slideIndex);
     }
+
     function currentSlide(n) {
         slideIndex = n;
         showSlides(slideIndex);
     }
+
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("mySlides");
         var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
     }
+    // btn back to top
+    var btn = $('#btn-back-to-top');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 20) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '20');
+    });
 </script>
 </body>
 </html>
