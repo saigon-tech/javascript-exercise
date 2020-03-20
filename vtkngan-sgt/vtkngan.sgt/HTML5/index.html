@@ -18,35 +18,29 @@
         img {
             vertical-align: middle;
         }
-
         .banner {
             position: relative;
             margin: auto;
             margin-top: 70px;
         }
-
         .banner__arrow {
             z-index: 1;
         }
-
         .mySlides {
             display: none;
             overflow: hidden;
             height: 100%;
             position: relative;
         }
-
         .mySlides-img {
             position: absolute;
         }
-
         .fade {
             -webkit-animation-name: fade;
             -webkit-animation-duration: 1.5s;
             animation-name: fade;
             animation-duration: 1.5s;
         }
-
         @-webkit-keyframes fade {
             from {
                 opacity: .4
@@ -55,7 +49,6 @@
                 opacity: 1
             }
         }
-
         @keyframes fade {
             from {
                 opacity: .4
@@ -64,19 +57,17 @@
                 opacity: 1
             }
         }
-
         .active, .dot:hover {
             background-color: black;
         }
-
         #btn-back-to-top {
             transition: background-color .3s,
             opacity .5s, visibility .5s;
             opacity: 0;
             visibility: hidden;
             z-index: 1000;
+            cursor: pointer;
         }
-
         #btn-back-to-top.show {
             opacity: 1;
             visibility: visible;
@@ -100,20 +91,18 @@
         </ul>
     </div>
 </header>
-
 <article class="banner">
-    <span id ="btn-prev" class="banner__arrow banner__arrow--left"><i class="fas fa-chevron-left "></i></span>
-    <span id ="btn-next" class="banner__arrow banner__arrow--right"><i class="fas fa-chevron-right"></i></span>
+    <span id="btn-prev" class="banner__arrow banner__arrow--left"><i class="fas fa-chevron-left "></i></span>
+    <span id="btn-next" class="banner__arrow banner__arrow--right"><i class="fas fa-chevron-right"></i></span>
     <div class="mySlides fade"><img class="mySlides-img" src="./assets/img/055053.jpg" style="width:100%"></div>
     <div class="mySlides fade"><img src="./assets/img/unnamed.jpg" style="width:100%"></div>
     <div class="mySlides fade"><img src="./assets/img/01A982.jpg" style="width:100%"></div>
     <ul class="banner__indicators">
         <li id="btn-dot-1" class="banner__indicators-item banner__indicators-item--round dot"></li>
-        <li  id="btn-dot-2" class="banner__indicators-item banner__indicators-item--round dot"></li>
-        <li  id="btn-dot-3" class="banner__indicators-item banner__indicators-item--round dot"></li>
+        <li id="btn-dot-2" class="banner__indicators-item banner__indicators-item--round dot"></li>
+        <li id="btn-dot-3" class="banner__indicators-item banner__indicators-item--round dot"></li>
     </ul>
 </article>
-
 <main>
     <article class="container">
         <section class="content">
@@ -127,7 +116,6 @@
                     </div>
                     <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキスト</a></div>
                 </div>
-
                 <div class="content__script-row">
                     <div class="content__script-header">
                         <p class="content__script-date">２０２０年０４月０８日</p>
@@ -137,7 +125,6 @@
                         テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
                     </a></div>
                 </div>
-
                 <div class="content__script-row">
                     <div class="content__script-header">
                         <p class="content__script-date">２０２０年１２月１０日</p>
@@ -145,7 +132,6 @@
                     </div>
                     <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキスト</a></div>
                 </div>
-
                 <div class="content__script-row">
                     <div class="content__script-header">
                         <p class="content__script-date">２０２０年０５月０１日</p>
@@ -154,10 +140,8 @@
                     <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a>
                     </div>
                 </div>
-
             </div>
         </section>
-
         <section class="gallery">
             <h2 class="gallery__title">イベント情報</h2>
             <div class="gallery__all">
@@ -209,65 +193,66 @@
     <div class="back-home" id="btn-back-to-top"><a><i class="fas fa-chevron-up"></i></a></div>
 </footer>
 <script>
-        var slideIndex = 1;
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    function plusSlides(n) {
+        slideIndex = slideIndex + n;
         showSlides(slideIndex);
-        function plusSlides(n) {
-            slideIndex = slideIndex + n;
-            showSlides(slideIndex);
+    }
+    function currentSlide(n) {
+        slideIndex = n;
+        showSlides(slideIndex);
+    }
+    function showSlides(n) {
+        var i;
+        let slides = $('.mySlides');
+        let dots = $('.dot');
+        if (n > slides.length) {
+            slideIndex = 1
         }
-        function currentSlide(n) {
-            slideIndex = n;
-            showSlides(slideIndex);
+        if (n < 1) {
+            slideIndex = slides.length
         }
-        function showSlides(n) {
-            var i;
-            let slides = $('.mySlides');
-            let dots = $('.dot');
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
         }
-        $('#btn-prev').click(function () {
-            plusSlides(-1)
-        });
-        $('#btn-next').click(function () {
-            plusSlides(1)
-        });
-        $('#btn-dot-1').click(function () {
-            currentSlide(1)
-        });
-        $('#btn-dot-2').click(function () {
-            currentSlide(2)
-        });
-        $('#btn-dot-3').click(function () {
-            currentSlide(3)
-        });
-        // btn back to top
-        var btn = $('#btn-back-to-top');
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 20) {
-                btn.addClass('show');
-            } else {
-                btn.removeClass('show');
-            }
-        });
-        btn.on('click', function (e) {
-            e.preventDefault();
-            $('html, body').animate({scrollTop: 0}, '20');
-        });
+        for (i = 0; i < dots.length; i++) {
+            $(dots[i]).removeClass("active");
+        }
+        $(slides[slideIndex - 1]).css({"display": "block"});
+        $(dots[slideIndex - 1]).addClass(" active");
+    }
+    $('#btn-prev').click(function () {
+        plusSlides(-1)
+    });
+    $('#btn-next').click(function () {
+        plusSlides(1)
+    });
+    $('#btn-dot-1').click(function () {
+        currentSlide(1)
+    });
+    $('#btn-dot-2').click(function () {
+        currentSlide(2)
+    });
+    $('#btn-dot-3').click(function () {
+        currentSlide(3)
+    });
+    // btn back to top
+    var btn = $('#btn-back-to-top');
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 20) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+    btn.on('click', function (e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, '20');
+    });
 
 </script>
 </body>
 </html>
+
 
