@@ -1,0 +1,54 @@
+.banner {
+    margin-top:70px;
+    position: relative;
+    height: 433px;
+    background-image: url(../img/unnamed.jpg);
+    background-size: cover;
+
+    &__arrow {
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        cursor: pointer;
+        i {
+            text-decoration: none;
+            color:white;
+        }
+        &--left {
+            left:10px;
+        }
+        &--right {
+            right:10px;
+        }
+    }
+
+    &__indicators {
+        bottom: 0;
+        position: absolute;
+        transform: translateY(-20%);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__indicators-item {
+        display: inline-block;
+        border-color: none;
+        background-color: grey;
+        cursor: pointer;
+        padding: 5px;
+        margin: 10px 2px;
+        width: 5px;
+        height: 5px;
+        &--round {
+            border-radius: 100%;
+        }
+        &:hover {
+            background-color: black;
+            opacity: 60%;
+        }
+        &--active {
+            background-color: black;
+            opacity: 80%;
+        }
+    }
+}

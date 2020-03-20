@@ -1,0 +1,45 @@
+.gallery {
+    &__all {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+    &__title {
+        text-align: center;
+        margin: 40px 0 20px 0;
+    }
+    .card {
+        width: calc(100%/3);
+        box-sizing: border-box;
+        padding: 0 8px;
+        margin-bottom: 20px;
+        a {
+            text-decoration: none;
+            color:black;
+        }
+        &__text {
+            margin-top: 10px;
+            font-weight: normal;
+        }
+    }
+    &__button {
+        text-align: center;
+        margin: 50px 30px 150px 30px;
+        &--link {
+            cursor: pointer;
+            padding: 16px 57px;
+            text-align: center;
+        }
+        &--blue {
+            background-color: #00679A;
+            color: white;
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .gallery {
+        .card {
+            width: calc(100%/2);
+        }
+    }
+}

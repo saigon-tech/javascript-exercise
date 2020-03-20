@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>ABCD Corporation</title>
+
+    <link rel="stylesheet" href="./assets/css/common.css">
+    <link rel="stylesheet" href="./assets/css/content.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/fontawesome-free-5.11.2-web/css/all.min.css">
+    <style>
+        img {
+            vertical-align: middle;
+        }
+        .banner {
+            position: relative;
+            margin: auto;
+            margin-top: 70px;
+        }
+        .banner__arrow {
+            z-index: 1;
+        }
+        .mySlides {
+            display: none;
+            overflow:hidden;
+            height: 100%;
+            position: relative;
+        }
+        .mySlides-img {
+            position: absolute ;
+        }
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @-webkit-keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        .active, .dot:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+<body id="top">
+<header>
+    <div class="menu container">
+        <h1 class="menu__logo menu__logo--left menu__logo--center">ABCD Corporation</h1>
+        <input type="checkbox" name="menu-btn" id="menu-btn" class="menu__btn"/>
+        <label for="menu-btn" class="menu__icon">
+            <span class="menu__navicon"></span>
+        </label>
+        <div class="menu__overlay"></div>
+        <ul class="menu__row">
+            <li class="menu__item"><a href="#"><i class="fas fa-caret-right"></i> 会社概要</a></li>
+            <li class="menu__item"><a href="#"><i class="fas fa-caret-right"></i> 事業紹介</a></li>
+            <li class="menu__item"><a href="#"><i class="fas fa-caret-right"></i> 採用情報</a></li>
+            <li class="menu__item"><a href="#"><i class="fas fa-caret-right"></i> お問い合わせ</a></li>
+        </ul>
+    </div>
+</header>
+
+<article class="banner">
+    <span class="banner__arrow banner__arrow--left" onclick="plusSlides(-1)"><i class="fas fa-chevron-left "></i></span>
+    <span class="banner__arrow banner__arrow--right" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></span>
+    <div class="mySlides fade"><img class="mySlides-img" src="./assets/img/055053.jpg" style="width:100%"></div>
+    <div class="mySlides fade"><img src="./assets/img/unnamed.jpg" style="width:100%"></div>
+    <div class="mySlides fade"><img src="./assets/img/01A982.jpg" style="width:100%"></div>
+    <ul class="banner__indicators">
+        <li class="banner__indicators-item banner__indicators-item--round dot" onclick="currentSlide(1)"></li>
+        <li class="banner__indicators-item banner__indicators-item--round dot" onclick="currentSlide(2)"></li>
+        <li class="banner__indicators-item banner__indicators-item--round dot" onclick="currentSlide(3)"></li>
+    </ul>
+</article>
+
+<main>
+    <article class="container">
+        <section class="content">
+            <h2 class="content__title">お知らせ</h2>
+            <hr class="content__divider content__divider--solid-blue"/>
+            <div class="content__script">
+                <div class="content__script-row">
+                    <div class="content__script-header">
+                        <p class="content__script-date">２０２０年１０月２０日</p>
+                        <span class="content__script-tag content__script-tag--blue content__script-tag--white">NEWS</span>
+                    </div>
+                    <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキスト</a></div>
+                </div>
+
+                <div class="content__script-row">
+                    <div class="content__script-header">
+                        <p class="content__script-date">２０２０年０４月０８日</p>
+                        <span class="content__script-tag content__script-tag--orange content__script-tag--white">PRODUCTS</span>
+                    </div>
+                    <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキスト
+                        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                    </a></div>
+                </div>
+
+                <div class="content__script-row">
+                    <div class="content__script-header">
+                        <p class="content__script-date">２０２０年１２月１０日</p>
+                        <span class="content__script-tag content__script-tag--blue content__script-tag--white">NEWS</span>
+                    </div>
+                    <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキスト</a></div>
+                </div>
+
+                <div class="content__script-row">
+                    <div class="content__script-header">
+                        <p class="content__script-date">２０２０年０５月０１日</p>
+                        <span class="content__script-tag content__script-tag--orange content__script-tag--white">PRODUCTS</span>
+                    </div>
+                    <div class="content__script-note"><a href="#">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2 class="gallery__title">イベント情報</h2>
+            <div class="gallery__all">
+                <div class="card">
+                    <a href="">
+                        <img class="card__img card__img--top" src="./assets/img/y-background.jpg" alt="Grey background">
+                        <h2 class="card__text">テキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="">
+                        <img class="card__img card__img--top" src="./assets/img/y-background.jpg" alt="Grey background">
+                        <h2 class="card__text">テキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="">
+                        <img class="card__img card__img--top" src="./assets/img/y-background.jpg" alt="Grey background">
+                        <h2 class="card__text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="">
+                        <img class="card__img card__img--top" src="./assets/img/y-background.jpg" alt="Grey background">
+                        <h2 class="card__text">テキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="">
+                        <img class="card__img card__img--top" src="./assets/img/y-background.jpg" alt="Grey background">
+                        <h2 class="card__text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="">
+                        <img class="card__img card__img--top" src="./assets/img/y-background.jpg" alt="Grey background">
+                        <h2 class="card__text">テキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="gallery__button">
+                <button class="gallery__button--link gallery__button--blue " type="button">一覧はこちら</button>
+            </div>
+        </section>
+    </article>
+</main>
+<footer>
+    <p>Copy &copy; ABCD Corporation. All Right Resered</p>
+    <div class="back-home"><a href="#top"><i class="fas fa-chevron-up"></i></a></div>
+</footer>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    function plusSlides(n) {
+        slideIndex = slideIndex + n;
+        showSlides(slideIndex);
+    }
+    function currentSlide(n) {
+        slideIndex = n;
+        showSlides(slideIndex);
+    }
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+
+</body>
+</html>
+
