@@ -33,21 +33,59 @@
     <input id="submitBtn" type="button" value="Submit"/>
 </form>
 <script language="javascript">
-    var lg_id = $('#lg_id')[0];
-    switch (true) {
-        case !lg_id.value:
-            messagePassW.innerHTML = "Can not be empty";
-            break;
-        case !lg_id.value.length < 8:
-            messagePassW.innerHTML = "Can not be empty";
-            break;
-    }
     $(function () {
         function validate() {
-            if (!$('#loginID').val()) {
+            // check white space
+            function issetWhiteSpace(value) {
+                if(value.match(/^\S{3,}$/)) {
+                    return true;
+                }
+                return  false;
+            }
+
+            if(issetWhiteSpace($('#password').val())){
+                $('#messagePassword').text("White Space not allowed");
+                $('#password').addClass('validate-error');
+                $('#password').val("");
+            }
+
+            if(issetWhiteSpace($('#name').val())){
+                // loi name
+                $('#messageName').text("You have entered less than 50 characters for name");
+                $('#name').addClass('validate-error');
+                $('#name').val("");
+            }
+
+            // check required
+            function requiredFields(value) {
+                if(!value) {
+                    return true;
+                }
+                return  false;
+            }
+            if(requiredFields($('#loginID').val())) {
                 $('#messageLoginID').text("Can not be empty");
                 $('#loginID').addClass('validate-error');
-            } else if (!$('#loginID').val().match(/^[a-zA-Z]+$/)) {
+            }
+            if(requiredFields($('#password').val())) {
+                $('#messagePassword').text("Can not be empty");
+                $('#password').addClass('validate-error');
+            }
+            if(requiredFields($('#name').val())) {
+                $('#messageName').text("Can not be empty");
+                $('#name').addClass('validate-error');
+            }
+            if(requiredFields($('#birthday').val())) {
+                $('#messageBirthday').text("Can not be empty");
+                $('#birthday').addClass('validate-error');
+            }
+            if(requiredFields($('#mail').val())) {
+                $('#messageMail').text("Can not be empty");
+                $('#mail').addClass('validate-error');
+            }
+
+            // login id
+            if (!$('#loginID').val().match(/^[a-zA-Z]+$/)) {
                 $('#messageLoginID').text("Please Enter only alphabets in text");
                 $('#loginID').addClass('validate-error');
                 $('#loginID').val("");
@@ -55,25 +93,17 @@
                 $('#messageLoginID').text("");
                 $('#loginID').removeClass('validate-error');
             }
-            if (!$('#password').val()) {
-                $('#messagePassword').text("Can not be empty");
-                $('#password').addClass('validate-error');
-            } else if ($('#password').val().length < 8) {
+            // password
+            if ($('#password').val().length < 8) {
                 $('#messagePassword').text("You have entered less than 8 characters for password");
-                $('#password').addClass('validate-error');
-                $('#password').val("");
-            } else if (!$('#password').val().match(/^\S{3,}$/)) {
-                $('#messagePassword').text("White Space not allowed");
                 $('#password').addClass('validate-error');
                 $('#password').val("");
             } else {
                 $('#messagePassword').text("");
                 $('#password').removeClass('validate-error');
             }
-            if (!$('#name').val()) {
-                $('#messageName').text("Can not be empty");
-                $('#name').addClass('validate-error');
-            } else if (!$('#name').val().match(/^\S{3,}$/)) {
+            // name
+             if (!$('#name').val().match(/^\S{3,}$/)) {
                 $('#messageName').text("You have entered less than 50 characters for name");
                 $('#name').addClass('validate-error');
                 $('#name').val("");
@@ -81,10 +111,8 @@
                 $('#messageName').text("");
                 $('#name').removeClass('validate-error');
             }
-            if (!$('#birthday').val()) {
-                $('#messageBirthday').text("Can not be empty");
-                $('#birthday').addClass('validate-error');
-            } else if (!$('#birthday').val().match(/(\d{4})-(\d{2})-(\d{2})/)) {
+            // birthday
+            if (!$('#birthday').val().match(/(\d{4})-(\d{2})-(\d{2})/)) {
                 $('#messageBirthday').text("format must be YYYY-MM-DD");
                 $('#birthday').addClass('validate-error');
                 $('#birthday').val("");
@@ -92,10 +120,8 @@
                 $('#messageBirthday').text("");
                 $('#birthday').removeClass('validate-error');
             }
-            if (!$('#mail').val()) {
-                $('#messageMail').text("Can not be empty");
-                $('#mail').addClass('validate-error');
-            } else if (!$('#mail').val().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            // mail
+            if (!$('#mail').val().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                 $('#messageMail').text("You have entered format username@gmail.com");
                 $('#mail').addClass('validate-error');
                 $('#mail').val("");
