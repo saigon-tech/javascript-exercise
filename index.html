@@ -86,24 +86,11 @@
 
         function validate() {
             validateLoginId()
-        }
-
-        function validate() {
             validatePassword()
-        }
-
-        function validate() {
             validateName()
-        }
-
-        function validate() {
             validateBirthday()
-        }
-
-        function validate() {
             validateEmail()
         }
-
         function validateLoginId() {
             if (isEmptyFields($('#loginID').val())) {
                 handleError($("#loginID"), $("#messageLoginID"), "Can not be empty")
@@ -150,7 +137,7 @@
             if (isEmptyFields($('#mail').val())) {
                 handleError($('#mail'), $('#messageMail'), "Can not be empty")
             } else if (isFormatEmail($('#mail').val())) {
-                handleError($('#mail'), $('#messageMail'), "format must be YYYY-MM-DD")
+                handleError($('#mail'), $('#messageMail'),  "You have entered format username@gmail.com")
             } else {
                 handleSuccess($('#mail'), $('#messageMail'))
             }
