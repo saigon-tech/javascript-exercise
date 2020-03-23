@@ -32,105 +32,93 @@
     <br>
     <input id="submitBtn" type="button" value="Submit"/>
 </form>
+
 <script language="javascript">
     $(function () {
+        // check is include white space
+        function isIncludeWhiteSpace(value) {
+            if (value.match(/^$|\s+/)) {
+                return true;
+            }
+            return false;
+        }
+        //check is only alphabel
+        function isOnlyAlphabet(value) {
+            return value.match(/^[a-zA-Z]+$/)
+        }
+        // check required
+        function isEmptyFields(value) {
+            return !value;
+        }
+        function handleError(element, errorTextElement, errorText) {
+            errorTextElement.text(errorText)
+            element.addClass('validate-error')
+            element.val("")
+        }
+        function handleSuccess(element, errorTextElement) {
+            errorTextElement.text("");
+            element.removeClass('validate-error');
+        }
+        //check is limit the length of password
+        function isLimitTheLengthOfPassword(value) {
+            return value.length < 8
+        }
+        //check is limit the length of text
+        function isLimitTheLengthOfText(value) {
+            return value.length > 50
+        }
+        // check is format yyyy-mm-dd
+        function isFormatYyyyMmDd(value) {
+            return value.match(/(\d{4})-(\d{2})-(\d{2})/)
+        }
+        // check is format email
+        function isFormatEmail(value) {
+            return !(value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+        }
         function validate() {
-            // check white space
-            function issetWhiteSpace(value) {
-                if(value.match(/^\S{3,}$/)) {
-                    return true;
-                }
-                return  false;
-            }
-
-            if(issetWhiteSpace($('#password').val())){
-                $('#messagePassword').text("White Space not allowed");
-                $('#password').addClass('validate-error');
-                $('#password').val("");
-            }
-
-            if(issetWhiteSpace($('#name').val())){
-                // loi name
-                $('#messageName').text("You have entered less than 50 characters for name");
-                $('#name').addClass('validate-error');
-                $('#name').val("");
-            }
-
-            // check required
-            function requiredFields(value) {
-                if(!value) {
-                    return true;
-                }
-                return  false;
-            }
-            if(requiredFields($('#loginID').val())) {
-                $('#messageLoginID').text("Can not be empty");
-                $('#loginID').addClass('validate-error');
-            }
-            if(requiredFields($('#password').val())) {
-                $('#messagePassword').text("Can not be empty");
-                $('#password').addClass('validate-error');
-            }
-            if(requiredFields($('#name').val())) {
-                $('#messageName').text("Can not be empty");
-                $('#name').addClass('validate-error');
-            }
-            if(requiredFields($('#birthday').val())) {
-                $('#messageBirthday').text("Can not be empty");
-                $('#birthday').addClass('validate-error');
-            }
-            if(requiredFields($('#mail').val())) {
-                $('#messageMail').text("Can not be empty");
-                $('#mail').addClass('validate-error');
-            }
-
-            // login id
-            if (!$('#loginID').val().match(/^[a-zA-Z]+$/)) {
-                $('#messageLoginID').text("Please Enter only alphabets in text");
-                $('#loginID').addClass('validate-error');
-                $('#loginID').val("");
+            //loginId
+            if (isEmptyFields($('#loginID').val())) {
+                handleError($("#loginID"), $("#messageLoginID"), "Can not be empty")
+            } else if (!isOnlyAlphabet($('#loginID').val())) {
+                handleError($("#loginID"), $("#messageLoginID"), "Please Enter only alphabets in text")
             } else {
-                $('#messageLoginID').text("");
-                $('#loginID').removeClass('validate-error');
+                handleSuccess($("#loginID"), $("#messageLoginID"))
             }
-            // password
-            if ($('#password').val().length < 8) {
-                $('#messagePassword').text("You have entered less than 8 characters for password");
-                $('#password').addClass('validate-error');
-                $('#password').val("");
+            //password
+            if (isEmptyFields($('#password').val())) {
+                handleError($("#password"), $("#messagePassword"), "Can not be empty")
+            } else if (isLimitTheLengthOfPassword($('#password').val())) {
+                handleError($("#password"), $("#messagePassword"), "You have entered less than 8 characters for password")
+            } else if (isIncludeWhiteSpace($('#password').val())) {
+                handleError($("#password"), $("#messagePassword"), "White Space not allowed")
             } else {
-                $('#messagePassword').text("");
-                $('#password').removeClass('validate-error');
+                handleSuccess($("#password"), $("#messagePassword"))
             }
-            // name
-             if (!$('#name').val().match(/^\S{3,}$/)) {
-                $('#messageName').text("You have entered less than 50 characters for name");
-                $('#name').addClass('validate-error');
-                $('#name').val("");
+            //name
+            if (isEmptyFields($('#name').val())) {
+                handleError($("#name"), $("#messageName"), "Can not be empty")
+            } else if (isLimitTheLengthOfText($('#name').val())) {
+                handleError($("#name"), $("#messageName"), "You have entered less than 50 characters for name")
             } else {
-                $('#messageName').text("");
-                $('#name').removeClass('validate-error');
+                handleSuccess($("#name"), $("#messageName"))
             }
-            // birthday
-            if (!$('#birthday').val().match(/(\d{4})-(\d{2})-(\d{2})/)) {
-                $('#messageBirthday').text("format must be YYYY-MM-DD");
-                $('#birthday').addClass('validate-error');
-                $('#birthday').val("");
+            //birthday
+            if (isEmptyFields($('#birthday').val())) {
+                handleError($('#birthday'), $('#messageBirthday'), "Can not be empty")
+            } else if (!isFormatYyyyMmDd($('#birthday').val())) {
+                handleError($('#birthday'), $('#messageBirthday'), "format must be YYYY-MM-DD")
             } else {
-                $('#messageBirthday').text("");
-                $('#birthday').removeClass('validate-error');
+                handleSuccess($('#birthday'), $('#messageBirthday'))
             }
-            // mail
-            if (!$('#mail').val().match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-                $('#messageMail').text("You have entered format username@gmail.com");
-                $('#mail').addClass('validate-error');
-                $('#mail').val("");
+            //email
+            if (isEmptyFields($('#mail').val())) {
+                handleError($('#mail'), $('#messageMail'), "Can not be empty")
+            } else if (isFormatEmail($('#mail').val())) {
+                handleError($('#mail'), $('#messageMail'), "format must be YYYY-MM-DD")
             } else {
-                $('#messageMail').text("");
-                $('#mail').removeClass('validate-error');
+                handleSuccess($('#mail'), $('#messageMail'))
             }
         }
-
         $('#submitBtn').click(function () {
             validate();
         });
