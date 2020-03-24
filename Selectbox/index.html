@@ -1,0 +1,68 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>The select element</h1>
+
+<p>The select element is used to create a drop-down list:</p>
+
+<label for="city">Choose a city:</label>
+<select id="city"></select>
+
+<label for="district">Choose a district:</label>
+<select id="district"></select>
+
+<label for="ward">Choose a ward:</label>
+<select id="ward"></select>
+
+<label for="street">Choose a street:</label>
+<select id="street"></select>
+<script type="text/javascript">
+    $(function(){
+        let jsonObj;
+
+        // 1. Get data json file
+        $.getJSON('local.json', function(result){
+            jsonObj = result
+            console.log(jsonObj)
+            console.log(Array.isArray(jsonObj));
+
+
+            // 2. Loop city va gan vao select id city
+            for (let i = 0; i < jsonObj.length; i++ ) {
+                //$('#city').append(`<option>${jsonObj[i].name}</option>`); //es6
+                $('#city').append("<option>"+jsonObj[i].name+"</option>"); // es5
+            };
+            let defaultDistricts = jsonObj[0].districts;
+            console.log(defaultDistricts);
+            for (let j = 0; j < defaultDistricts.length; j++ ) {
+                $('#district').append("<option>"+ defaultDistricts[j].name +"</option>"); // es5
+            };
+
+        });
+        // 3. SU kien city change
+        $('#city').on('change', function() {
+            for (let i = 0; i < jsonObj.length; i++){
+                if (jsonObj[i].name === this.value) {
+                    let districts = jsonObj[i].districts;
+                    console.log(districts);
+                    // 4. Loop districts va gan vao select id district
+                    $('#district').html('');
+                    for (let j = 0; j < districts.length; j++ ) {
+
+                        $('#district').append("<option>"+ districts[j].name +"</option>")// es5
+                    };
+                }
+            }
+            console.log( this.value );
+        });
+
+
+
+    });
+
+</script>
+</body>
+</html>
