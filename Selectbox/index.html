@@ -20,49 +20,53 @@
 <label for="street">Choose a street:</label>
 <select id="street"></select>
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         let jsonObj;
-
+        let districts;
+        let wards;
+        let streets;
         // 1. Get data json file
-        $.getJSON('local.json', function(result){
-            jsonObj = result
-            console.log(jsonObj)
-            console.log(Array.isArray(jsonObj));
-
-
+        $.getJSON('local.json', function (result) {
+            jsonObj = result;
             // 2. Loop city va gan vao select id city
-            for (let i = 0; i < jsonObj.length; i++ ) {
-                //$('#city').append(`<option>${jsonObj[i].name}</option>`); //es6
-                $('#city').append("<option>"+jsonObj[i].name+"</option>"); // es5
-            };
-            let defaultDistricts = jsonObj[0].districts;
-            console.log(defaultDistricts);
-            for (let j = 0; j < defaultDistricts.length; j++ ) {
-                $('#district').append("<option>"+ defaultDistricts[j].name +"</option>"); // es5
-            };
-
-        });
-        // 3. SU kien city change
-        $('#city').on('change', function() {
-            for (let i = 0; i < jsonObj.length; i++){
-                if (jsonObj[i].name === this.value) {
-                    let districts = jsonObj[i].districts;
-                    console.log(districts);
-                    // 4. Loop districts va gan vao select id district
-                    $('#district').html('');
-                    for (let j = 0; j < districts.length; j++ ) {
-
-                        $('#district').append("<option>"+ districts[j].name +"</option>")// es5
-                    };
-                }
+            for (let i = 0; i < jsonObj.length; i++) {
+                $('#city').append("<option value=" + i + ">" + jsonObj[i].name + "</option>");
             }
-            console.log( this.value );
+            $("#city").change();
         });
-
-
-
-    });
-
+        // 3. Su kien city change
+        $('#city').on('change', function () {
+            const cityIndex = $(this).val();
+            console.log('value city = ', $(this).val());
+            districts = jsonObj[cityIndex].districts;
+            console.log(districts);
+            // 4. Loop districts va gan vao select id district
+            $('#district').html('');
+            for (let j = 0; j < districts.length; j++) {
+                $('#district').append("<option value=" + j + ">" + districts[j].name + "</option>");
+            }
+            $("#district").change();
+        });
+        // 5. Su kien district change
+        $('#district').on('change', function () {
+            const districtIndex = $(this).val();
+            console.log('value district = ', $(this).val());
+            wards = districts[districtIndex].wards;
+            console.log(wards);
+            // 6. Loop wards va gan vao select id ward
+            $('#ward').html('');
+            for (let z = 0; z < wards.length; z++) {
+                $('#ward').append("<option>" + wards[z].name + "</option>");
+            }
+            streets = districts[districtIndex].streets;
+            console.log(streets);
+            // 7. Loop street va gan vao select id street
+            $('#street').html('');
+            for (let z = 0; z < streets.length; z++) {
+                $('#street').append("<option>" + streets[z].name + "</option>");
+            }
+        });
+    })
 </script>
 </body>
 </html>
