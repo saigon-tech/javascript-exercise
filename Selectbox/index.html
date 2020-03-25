@@ -1,10 +1,19 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        select {
+            margin-right: 20px;
+        }
+    </style>
 </head>
 <body>
 
-<h1>The select element</h1>
+<h1>Selectbox</h1>
 
 <p>The select element is used to create a drop-down list:</p>
 
@@ -37,9 +46,7 @@
         // 3. Su kien city change
         $('#city').on('change', function () {
             const cityIndex = $(this).val();
-            console.log('value city = ', $(this).val());
             districts = jsonObj[cityIndex].districts;
-            console.log(districts);
             // 4. Loop districts va gan vao select id district
             $('#district').html('');
             for (let j = 0; j < districts.length; j++) {
@@ -50,16 +57,13 @@
         // 5. Su kien district change
         $('#district').on('change', function () {
             const districtIndex = $(this).val();
-            console.log('value district = ', $(this).val());
             wards = districts[districtIndex].wards;
-            console.log(wards);
             // 6. Loop wards va gan vao select id ward
             $('#ward').html('');
             for (let z = 0; z < wards.length; z++) {
                 $('#ward').append("<option>" + wards[z].name + "</option>");
             }
             streets = districts[districtIndex].streets;
-            console.log(streets);
             // 7. Loop street va gan vao select id street
             $('#street').html('');
             for (let z = 0; z < streets.length; z++) {
