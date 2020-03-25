@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,10 +12,12 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             background-color: #1e637d;
             font-family: 'Roboto', Helvetica, sans-serif;
         }
+
         .app {
             display: flex;
             flex-flow: column;
@@ -22,6 +25,7 @@
             width: 100vw;
             height: 100vh;
         }
+
         header {
             display: flex;
             justify-content: center;
@@ -29,12 +33,14 @@
             height: 60px;
             color: white;
         }
+
         .lists {
             display: flex;
             flex: 1;
             width: 100%;
             overflow-x: scroll;
         }
+
         .lists .list {
             width: 270px;
             height: 100%;
@@ -45,6 +51,7 @@
             border-radius: 5px;
             margin: 0 0px 30px 10px;
         }
+
         .lists .list .list-item {
             background-color: #fff;
             border-bottom: 1px solid #ccc;
@@ -61,6 +68,7 @@
             padding-top: 10px;
             font-size: 14px;
         }
+
         .jobs-list-heading {
             font-size: 16px;
             font-weight: bold;
@@ -90,33 +98,35 @@
     </div>
 </div>
 <script>
-    const list_items = document.querySelectorAll('.list-item');
-    const lists = document.querySelectorAll('.list');
-    let draggedItem;
-    for (let i = 0; i < list_items.length; i++) {
-        const item = list_items[i];
-        item.addEventListener('dragstart', function () {
-            draggedItem = item;
-        });
-        for (let j = 0; j < lists.length; j++) {
-            const list = lists[j];
-            list.addEventListener('dragover', function (e) {
-                e.preventDefault();
+    $(function () {
+        const list_items = document.querySelectorAll('.list-item');
+        const lists = document.querySelectorAll('.list');
+        let draggedItem;
+        for (let i = 0; i < list_items.length; i++) {
+            const item = list_items[i];
+            $(item).on('dragstart', function (event) {
+                draggedItem = item;
             });
-            list.addEventListener('dragenter', function (e) {
-                e.preventDefault();
-                this.style.backgroundColor = 'rgba(168, 185, 191, 0.5)';
-            });
-            list.addEventListener('dragleave', function (e) {
-                this.style.backgroundColor = '#e2e4e6';
-            });
-            list.addEventListener('drop', function (e) {
-                console.log('drop');
-                this.append(draggedItem);
-                this.style.backgroundColor = '#e2e4e6';
-            });
+            for (let j = 0; j < lists.length; j++) {
+                const list = lists[j];
+                $(list).bind('dragover', function (e) {
+                    e.preventDefault();
+                });
+                $(list).on('dragenter', function (e) {
+                    e.preventDefault();
+                    $(this).css("background-color", "rgba(168, 185, 191, 0.5)");
+                });
+                $(list).bind('dragleave', function (e) {
+                    $(this).css("background-color", "#e2e4e6");
+                });
+                $(list).on('drop', function (e) {
+                    e.preventDefault();
+                    $(this).css("background-color", "#e2e4e6");
+                    $(this).append(draggedItem)
+                });
+            }
         }
-    }
+    });
 </script>
 </body>
 </html>
