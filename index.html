@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         .validate-error {
             border: 1px solid red;
@@ -29,80 +30,124 @@
     <input type="text" value="" id="mail"/><br/>
     <div id="messageMail"></div>
     <br>
-    <input type="button" value="Submit" onclick="validate()"/>
+    <input id="submitBtn" type="button" value="Submit"/>
 </form>
+
 <script language="javascript">
-    let loginID = document.getElementById("loginID");
-    let messageLoginID = document.getElementById("messageLoginID");
-    let passW = document.getElementById("password");
-    let messagePassW = document.getElementById("messagePassword");
-    let name = document.getElementById("name");
-    let messageName = document.getElementById("messageName");
-    let birth = document.getElementById("birthday");
-    let messageBirth = document.getElementById("messageBirthday");
-    let mail = document.getElementById("mail");
-    let messageMail = document.getElementById("messageMail");
-    function validate() {
-        if (!loginID.value) {
-            messageLoginID.innerHTML = "Can not be empty";
-            loginID.classList.add('validate-error');
-        } else if (!loginID.value.match(/^[a-zA-Z]+$/)) {
-            messageLoginID.innerHTML = "Please Enter only alphabets in text";
-            loginID.classList.add('validate-error');
-            loginID.value = "";
-        } else {
-            messageLoginID.innerHTML = "";
-            loginID.classList.remove('validate-error');
+    $(function () {
+        // check is include white space
+        function isIncludeWhiteSpace(value) {
+            if (value.match(/^$|\s+/)) {
+                return true;
+            }
+            return false;
         }
-        if (!passW.value) {
-            messagePassW.innerHTML = "Can not be empty";
-            passW.classList.add('validate-error');
-        } else if (passW.value.length < 8) {
-            messagePassW.innerHTML = "You have entered less than 8 characters for password";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else if (!passW.value.match(/^\S{3,}$/)) {
-            messagePassW.innerHTML = "White Space not allowed";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else {
-            messagePassW.innerHTML = "";
-            passW.classList.remove('validate-error');
+
+        // check required
+        function isEmptyFields(value) {
+            return !value;
         }
-        if (!name.value) {
-            messageName.innerHTML = "Can not be empty";
-            name.classList.add('validate-error');
-        } else if (!name.value.match(/^\S{3,}$/)) {
-            messageName.innerHTML = "You have entered less than 50 characters for name";
-            name.classList.add('validate-error');
-            name.value = "";
-        } else {
-            messageName.innerHTML = "";
-            name.classList.remove('validate-error');
+
+        function handleError(element, errorTextElement, errorText) {
+            errorTextElement.text(errorText)
+            element.addClass('validate-error')
+            element.val("")
         }
-        if (!birth.value) {
-            messageBirth.innerHTML = "Can not be empty";
-            birth.classList.add('validate-error');
-        } else if (!birth.value.match(/(\d{4})-(\d{2})-(\d{2})/)) {
-            messageBirth.innerHTML = "format must be YYYY-MM-DD";
-            birth.classList.add('validate-error');
-            birth.value = "";
-        } else {
-            messageBirth.innerHTML = "";
-            birth.classList.remove('validate-error');
+
+        function handleSuccess(element, errorTextElement) {
+            errorTextElement.text("");
+            element.removeClass('validate-error');
         }
-        if (!mail.value) {
-            messageMail.innerHTML = "Can not be empty";
-            mail.classList.add('validate-error');
-        } else if (!mail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-            messageMail.innerHTML = "You have entered format username@gmail.com";
-            mail.classList.add('validate-error');
-            mail.value = "";
-        } else {
-            messageMail.innerHTML = "";
-            mail.classList.remove('validate-error');
+
+        //check is only alphabel
+        function isOnlyAlphabet(value) {
+            return value.match(/^[a-zA-Z]+$/)
         }
-    }
+
+        //check is limit the length of password
+        function isLimitTheLengthOfPassword(value) {
+            return value.length < 8
+        }
+
+        //check is limit the length of text
+        function isLimitTheLengthOfText(value) {
+            return value.length > 50
+        }
+
+        // check is format yyyy-mm-dd
+        function isFormatYyyyMmDd(value) {
+            return value.match(/(\d{4})-(\d{2})-(\d{2})/)
+        }
+
+        // check is format email
+        function isFormatEmail(value) {
+            return !(value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+        }
+
+        function validate() {
+            validateLoginId()
+            validatePassword()
+            validateName()
+            validateBirthday()
+            validateEmail()
+        }
+        function validateLoginId() {
+            if (isEmptyFields($('#loginID').val())) {
+                handleError($("#loginID"), $("#messageLoginID"), "Can not be empty")
+            } else if (!isOnlyAlphabet($('#loginID').val())) {
+                handleError($("#loginID"), $("#messageLoginID"), "Please Enter only alphabets in text")
+            } else {
+                handleSuccess($("#loginID"), $("#messageLoginID"))
+            }
+        }
+
+        function validatePassword() {
+            if (isEmptyFields($('#password').val())) {
+                handleError($("#password"), $("#messagePassword"), "Can not be empty")
+            } else if (isLimitTheLengthOfPassword($('#password').val())) {
+                handleError($("#password"), $("#messagePassword"), "You have entered less than 8 characters for password")
+            } else if (isIncludeWhiteSpace($('#password').val())) {
+                handleError($("#password"), $("#messagePassword"), "White Space not allowed")
+            } else {
+                handleSuccess($("#password"), $("#messagePassword"))
+            }
+        }
+
+        function validateName() {
+            if (isEmptyFields($('#name').val())) {
+                handleError($("#name"), $("#messageName"), "Can not be empty")
+            } else if (isLimitTheLengthOfText($('#name').val())) {
+                handleError($("#name"), $("#messageName"), "You have entered less than 50 characters for name")
+            } else {
+                handleSuccess($("#name"), $("#messageName"))
+            }
+        }
+
+        function validateBirthday() {
+            if (isEmptyFields($('#birthday').val())) {
+                handleError($('#birthday'), $('#messageBirthday'), "Can not be empty")
+            } else if (!isFormatYyyyMmDd($('#birthday').val())) {
+                handleError($('#birthday'), $('#messageBirthday'), "format must be YYYY-MM-DD")
+            } else {
+                handleSuccess($('#birthday'), $('#messageBirthday'))
+            }
+        }
+
+        function validateEmail() {
+            if (isEmptyFields($('#mail').val())) {
+                handleError($('#mail'), $('#messageMail'), "Can not be empty")
+            } else if (isFormatEmail($('#mail').val())) {
+                handleError($('#mail'), $('#messageMail'),  "You have entered format username@gmail.com")
+            } else {
+                handleSuccess($('#mail'), $('#messageMail'))
+            }
+        }
+
+        $('#submitBtn').click(function () {
+            validate();
+        });
+    });
 </script>
 </body>
 </html>
+
