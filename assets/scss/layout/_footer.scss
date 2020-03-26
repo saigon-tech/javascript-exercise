@@ -1,0 +1,28 @@
+footer.global {
+    background: $color_blue;
+}
+#backtotop {
+    display: inline-block;
+    position: fixed;
+    bottom: 100px;
+    right: 15px;
+    background: $color_blue;
+    color: #fff;
+    padding: 6px 12px;
+    visibility: visible;
+    z-index: 99;
+    span{
+        font-size: 25px;
+    }
+}
+.coppy_right {
+    padding: 15px 0px;
+    text-align: center;
+    font-size: 16px;
+    color: #FFF;
+}
+@media screen and (max-width:576px) {
+    #backtotop{
+        bottom:80px;
+    }
+}
