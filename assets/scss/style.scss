@@ -1,0 +1,35 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 600px;
+  height: 150px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  padding: 15px;
+  top: 40%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+#city {
+  padding: 5px 0px;
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#districts {
+  padding: 5px 0px;
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#wards {
+  padding: 5px 0px;
+  width: 100%;
+  font-size: 18px;
+}
