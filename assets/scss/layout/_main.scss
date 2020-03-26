@@ -1,0 +1,142 @@
+.title__center {
+    text-align: center;
+    font-size: 36px;
+}
+.title__main {
+    margin: 20px auto;
+    width: 100%;
+    max-width:1200px;
+    
+}
+//news_content_main
+#news {
+    margin: 40px auto;
+    position: relative;
+}
+.content__main{
+    background: #FFF;
+    padding: 20px 0;
+}
+.content__news {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top:2px solid $color_border;
+}
+.content__news01 {
+    width: $col_w25;
+    position: relative;
+    float: left;
+    padding: 10px 0px;
+    display: inline-flex;
+}
+
+.content__news02 {
+    width: $col_w100;
+    padding: 10px 0px;
+    border-bottom: 1px solid $color_bd;
+    a{
+        color: #000;
+        font-size: 14px;
+    }
+}
+.content__news__time {
+    padding-right: 10px;
+    font-size: 14px;
+}
+.content__news__type {
+    padding: 0px 22px;
+    text-transform: uppercase;
+    background: $color_background;
+    color: #FFF;
+    font-size: 14px;
+}
+.content__product__type {
+    padding: 0px 10px;
+    background: $color_oranger;
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 14px;
+}
+//End_news_content_main
+
+// Recruiment
+#recruitment {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.recruiment__box {
+    width: $col_w33;
+    margin: 10px 0px;
+    min-height: 301px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+    transition: .4s;
+    padding-bottom: 5px;
+    &:nth-child(2){
+        margin: 10px 35px;
+    }
+    &:nth-child(5){
+        margin: 10px 35px;
+    }
+    a{
+        text-decoration:none;
+    }
+}
+.recruiment__box__title {
+    text-align: left;
+    padding: 5px 0px 10px 10px;
+    h2{
+        font-size: 14px;
+        color: #000;
+        font-weight: normal;
+        
+    }
+}
+.recruiment__seemore {
+    text-align: center;
+    margin: 50px 0px 150px 0px;
+    a{
+        padding: 20px 80px;
+        background: $color_blue;
+        color: #FFF;
+        text-decoration: none;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+}
+//End_Recruiment
+@media screen and (max-width:576px) {
+    .title__center{
+        font-size:25px;
+        padding-top: 20px;
+    }
+    .content__news01{
+        width: 100%;
+    }
+    .recruiment__box{
+        width: $col_w50;
+        margin: 10px 4px;
+        &:nth-child(2){
+            margin:10px 4px;
+        }
+        &:nth-child(5){
+            margin:10px 4px;
+        }
+    }
+    .recruiment__box__detail{
+        padding:0px;   
+    }
+    .recruiment__seemore {
+        margin:30px 0px 100px 0px;
+    }
+    .recruiment__box__detail p{
+        font-size:13px;
+    }
+
+}
