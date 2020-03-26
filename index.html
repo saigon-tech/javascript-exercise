@@ -1,108 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <style>
-        .validate-error {
-            border: 1px solid red;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>SelectBox</title>
+    <link rel="stylesheet" href="./assets/scss/style.css">
 </head>
 <body>
-<form>
-    <label for="loginID">Login ID:</label><br>
-    <input type="text" value="" id="loginID"/><br/>
-    <div id="messageLoginID"></div>
-    <br>
-    <label for="password">Password:</label><br>
-    <input type="password" value="" id="password"/><br/>
-    <div id="messagePassword"></div>
-    <br>
-    <label for="name">Name:</label><br>
-    <input type="text" value="" id="name"/><br/>
-    <div id="messageName"></div>
-    <br>
-    <label for="birthday">Birthday:</label><br>
-    <input type="text" value="" id="birthday" placeholder="YYYY-MM-DD"/><br/>
-    <div id="messageBirthday"></div>
-    <br>
-    <label for="mail">Mail:</label><br>
-    <input type="text" value="" id="mail"/><br/>
-    <div id="messageMail"></div>
-    <br>
-    <input type="button" value="Submit" onclick="validate()"/>
-</form>
-<script language="javascript">
-    let loginID = document.getElementById("loginID");
-    let messageLoginID = document.getElementById("messageLoginID");
-    let passW = document.getElementById("password");
-    let messagePassW = document.getElementById("messagePassword");
-    let name = document.getElementById("name");
-    let messageName = document.getElementById("messageName");
-    let birth = document.getElementById("birthday");
-    let messageBirth = document.getElementById("messageBirthday");
-    let mail = document.getElementById("mail");
-    let messageMail = document.getElementById("messageMail");
-    function validate() {
-        if (!loginID.value) {
-            messageLoginID.innerHTML = "Can not be empty";
-            loginID.classList.add('validate-error');
-        } else if (!loginID.value.match(/^[a-zA-Z]+$/)) {
-            messageLoginID.innerHTML = "Please Enter only alphabets in text";
-            loginID.classList.add('validate-error');
-            loginID.value = "";
-        } else {
-            messageLoginID.innerHTML = "";
-            loginID.classList.remove('validate-error');
-        }
-        if (!passW.value) {
-            messagePassW.innerHTML = "Can not be empty";
-            passW.classList.add('validate-error');
-        } else if (passW.value.length < 8) {
-            messagePassW.innerHTML = "You have entered less than 8 characters for password";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else if (!passW.value.match(/^\S{3,}$/)) {
-            messagePassW.innerHTML = "White Space not allowed";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else {
-            messagePassW.innerHTML = "";
-            passW.classList.remove('validate-error');
-        }
-        if (!name.value) {
-            messageName.innerHTML = "Can not be empty";
-            name.classList.add('validate-error');
-        } else if (!name.value.match(/^\S{3,}$/)) {
-            messageName.innerHTML = "You have entered less than 50 characters for name";
-            name.classList.add('validate-error');
-            name.value = "";
-        } else {
-            messageName.innerHTML = "";
-            name.classList.remove('validate-error');
-        }
-        if (!birth.value) {
-            messageBirth.innerHTML = "Can not be empty";
-            birth.classList.add('validate-error');
-        } else if (!birth.value.match(/(\d{4})-(\d{2})-(\d{2})/)) {
-            messageBirth.innerHTML = "format must be YYYY-MM-DD";
-            birth.classList.add('validate-error');
-            birth.value = "";
-        } else {
-            messageBirth.innerHTML = "";
-            birth.classList.remove('validate-error');
-        }
-        if (!mail.value) {
-            messageMail.innerHTML = "Can not be empty";
-            mail.classList.add('validate-error');
-        } else if (!mail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-            messageMail.innerHTML = "You have entered format username@gmail.com";
-            mail.classList.add('validate-error');
-            mail.value = "";
-        } else {
-            messageMail.innerHTML = "";
-            mail.classList.remove('validate-error');
-        }
-    }
-</script>
+    <div class="container">
+        <select name="city" id="city">
+            <option value="">Select City</option>
+        </select>
+        <br/>
+        <select name="districts" id="districts">
+            <option value="">Select Districts</option>
+        </select>
+        <br/>
+        <select name="wards" id="wards">
+            <option value="">Select Wards</option>
+        </select>
+    </div>
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/function.js"></script>
 </body>
 </html>
