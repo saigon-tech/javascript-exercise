@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Register</title>
+<!--    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">-->
+    <link rel="stylesheet" href="./assets/css/fontawesome.css">
+    <link rel="stylesheet" href="./assets/scss/style.css">
+</head>
+<body>
+    <div action="" class="login-form">
+        <h1>Login</h1>
+        <div class="txtb">
+            <input type="text" placeholder="Login ID" id="lg_id">
+            <p class="error_id"></p>
+        </div>
+        <div class="txtb">
+            <input type="password" placeholder="Password" id="password">
+            <p class="error_pw"></p>
+        </div>
+        <div class="txtb">
+            <input type="text" placeholder="Name" id="name">
+            <p class="error_name"></p>
+        </div>
+        <div class="txtb">
+            <input type="date" data-date="" data-date-format="YYYY-MM-DD" id="birthday" value="2020-03-23">
+            <p class="error_bd"></p>
+        </div>
+        <div class="txtb">
+            <input type="email" placeholder="Email" id="email">
+            <p class="error_email"></p>
+        </div>
+        <button type="submit" class="logbtn">Login</button>
+        <div class="bottom-text">
+            Don't have account? <a href="#">Sign up</a>
+        </div>
+    </div>
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/moment.min.js"></script>
+    <script src="./assets/js/function.js"></script>
+</body>
+</html>
