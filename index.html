@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script type="text/javascript"
@@ -11,23 +10,18 @@
 <form id="formDemo">
     <label for="loginID">Login ID:</label><br>
     <input name="login" type="text" value="" id="loginID" /><br/>
-    <!--    <div id="messageLoginID"></div>-->
     <br>
     <label for="password">Password:</label><br>
     <input name="password" type="password" value="" id="password" required/><br/>
-    <!--    <div id="messagePassword"></div>-->
     <br>
     <label for="name">Name:</label><br>
     <input name="name" type="text" value="" id="name" required/><br/>
-    <!--    <div id="messageName"></div>-->
     <br>
     <label for="birthday">Birthday:</label><br>
     <input name="birthday" type="text" value="" id="birthday" placeholder="YYYY-MM-DD" required/><br/>
-    <!--    <div id="messageBirthday"></div>-->
     <br>
     <label for="mail">Mail:</label><br>
     <input name="mail" type="email" value="" id="mail" required/><br/>
-    <!--    <div id="messageMail"></div>-->
     <br>
     <button value="Submit" type="submit">Submit</button>
 </form>
@@ -38,12 +32,12 @@
             rules: {
                 login: {
                     required: true,
-                    pattern: "/^[a-zA-Z]+$/"
+                    pattern: "^[a-zA-Z]+$"
                 },
                 password: {
                     required: true,
                     minlength: 8,
-                    pattern: "/^$|\\s+/",
+                    pattern: "^\\S{3,}$",
                 },
                 name: {
                     required: true,
@@ -51,7 +45,7 @@
                 },
                 birthday: {
                     required: true,
-                    pattern: "/(\\d{4})-(\\d{2})-(\\d{2})/"
+                    pattern: "(\\d{4})-(\\d{2})-(\\d{2})"
                 },
                 mail: {
                     required: true,
