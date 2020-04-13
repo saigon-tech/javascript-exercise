@@ -4,12 +4,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/additional-methods.min.js"></script>
+    <script type="text/javascript"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/additional-methods.min.js"></script>
 </head>
 <body>
 <form id="formDemo">
     <label for="loginID">Login ID:</label><br>
-    <input name="login" type="text" value="" id="loginID" required/><br/>
+    <input name="login" type="text" value="" id="loginID" /><br/>
     <!--    <div id="messageLoginID"></div>-->
     <br>
     <label for="password">Password:</label><br>
@@ -32,8 +33,7 @@
 </form>
 <script language="javascript">
 
-    $(function (e) {
-        e.preventDefault();
+    $(function () {
         $("#formDemo").validate({
             rules: {
                 login: {
@@ -43,7 +43,19 @@
                 password: {
                     required: true,
                     minlength: 8,
+                    pattern: "/^$|\\s+/",
                 },
+                name: {
+                    required: true,
+                    maxlength: 50,
+                },
+                birthday: {
+                    required: true,
+                    pattern: "/(\\d{4})-(\\d{2})-(\\d{2})/"
+                },
+                mail: {
+                    required: true,
+                }
             },
             messages: {
                 login: {
@@ -52,9 +64,20 @@
                 },
                 password: {
                     required: "vui long nhap noi dung",
+                    pattern: "khong chua khoang trang",
                     minlength: "Password ngan v, chem gio ah?"
                 },
-
+                name: {
+                    required: "vui long nhap",
+                    maxlength: "ngan hon 50"
+                },
+                birthday: {
+                    required: "vui long nhap noi dung",
+                    pattern: "format YYYY_MM_DD"
+                },
+                mail: {
+                    required: "vui long nhap noi dung"
+                }
             },
 
         });
