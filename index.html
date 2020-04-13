@@ -31,7 +31,7 @@
     <input name="mail" type="email" value="" id="mail" required/><br/>
     <!--    <div id="messageMail"></div>-->
     <br>
-    <input type="button" value="Submit" type="submit" />
+    <button value="Submit" type="submit">Submit</button>
 </form>
 <script language="javascript">
     // let loginID = document.getElementById("loginID");
@@ -106,22 +106,26 @@
     //     }
     // }
     $(function () {
-
         $("#formDemo").validate({
             rules: {
                 login: "required",
                 password: {
                     required: "true",
-                    minlength: 8,
+                    minlength: 8
                 },
-                messages: {
-                    login: "vui long nhap noi dung",
-                    password: {
-                        required: "vui long nhap noi dung",
-                        minlength: "Password ngắn vậy, chém gió ah?"
-                    }
-                }
-
+                name:{},
+                birthday: {},
+                mail:{},
+            },
+            messages: {
+                login: "vui long nhap noi dung",
+                password: {
+                    required: "vui long nhap noi dung",
+                    minlength: "Password ngan v, chem gio ah?"
+                },
+                name:{},
+                birthday: {},
+                mail:{},
             }
         });
     });
