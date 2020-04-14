@@ -49,22 +49,6 @@ body {
   transition: .5s; }
   .logbtn:hover {
     background-position: right; }
-
-.error_id {
-  color: red;
-  font-size: 15px;
-  padding: 0 5px; }
-
-.error_pw {
-  color: red;
-  font-size: 15px;
-  padding: 0 5px; }
-
-.error_name {
-  color: red;
-  font-size: 15px;
-  padding: 0 5px; }
-
 .bottom-text {
   margin-top: 60px;
   text-align: center;
@@ -81,7 +65,9 @@ body {
   display: inline-block;
   color: #333;
 }
-
+.error{
+  color: red;
+}
 #birthday::-webkit-datetime-edit, #birthday::-webkit-inner-spin-button, #birthday::-webkit-clear-button {
   display: none;
 }
