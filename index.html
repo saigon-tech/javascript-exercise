@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        label.error {
+            color: red;
+        }
+        .error {
+            border-color: red;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script type="text/javascript"
@@ -9,24 +17,23 @@
 <body>
 <form id="formDemo">
     <label for="loginID">Login ID:</label><br>
-    <input name="login" type="text" value="" id="loginID" /><br/>
+    <input name="login" type="text" value="" id="loginID"/><br/>
     <br>
     <label for="password">Password:</label><br>
-    <input name="password" type="password" value="" id="password" required/><br/>
+    <input name="password" type="password" value="" id="password"/><br/>
     <br>
     <label for="name">Name:</label><br>
-    <input name="name" type="text" value="" id="name" required/><br/>
+    <input name="name" type="text" value="" id="name"/><br/>
     <br>
     <label for="birthday">Birthday:</label><br>
     <input name="birthday" type="text" value="" id="birthday" placeholder="YYYY-MM-DD" required/><br/>
     <br>
     <label for="mail">Mail:</label><br>
-    <input name="mail" type="email" value="" id="mail" required/><br/>
+    <input name="mail" type="email" value="" id="mail"/><br/>
     <br>
     <button value="Submit" type="submit">Submit</button>
 </form>
 <script language="javascript">
-
     $(function () {
         $("#formDemo").validate({
             rules: {
@@ -53,29 +60,33 @@
             },
             messages: {
                 login: {
-                    required: "vui long nhap noi dung",
-                    pattern: "chi cho phep alphabet",
+                    required: "Can not be empty",
+                    pattern: "Please enter only alphabets in text",
                 },
                 password: {
-                    required: "vui long nhap noi dung",
-                    pattern: "khong chua khoang trang",
-                    minlength: "Password ngan v, chem gio ah?"
+                    required: "Can not be empty",
+                    pattern: "White space not allowed",
+                    minlength: "You have entered less than 8 characters for password"
                 },
                 name: {
-                    required: "vui long nhap",
-                    maxlength: "ngan hon 50"
+                    required: "Can not be empty",
+                    maxlength: "You have entered less than 50 characters for name"
                 },
                 birthday: {
-                    required: "vui long nhap noi dung",
-                    pattern: "format YYYY_MM_DD"
+                    required: "Can not be empty",
+                    pattern: "Format must be YYYY-MM-DD"
                 },
                 mail: {
-                    required: "vui long nhap noi dung"
+                    required: "Can not be empty"
                 }
             },
-
         });
-    });
+        $("button").click(function () {
+            if ($("#formDemo").valid()) {
+                alert("Form Submitted");
+            }
+        });
+    })
 </script>
 </body>
 </html>
