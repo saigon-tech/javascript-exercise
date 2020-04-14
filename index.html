@@ -2,107 +2,91 @@
 <html>
 <head>
     <style>
-        .validate-error {
-            border: 1px solid red;
+        label.error {
+            color: red;
+        }
+        .error {
+            border-color: red;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript"
+            src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/additional-methods.min.js"></script>
 </head>
 <body>
-<form>
+<form id="formDemo">
     <label for="loginID">Login ID:</label><br>
-    <input type="text" value="" id="loginID"/><br/>
-    <div id="messageLoginID"></div>
+    <input name="login" type="text" value="" id="loginID"/><br/>
     <br>
     <label for="password">Password:</label><br>
-    <input type="password" value="" id="password"/><br/>
-    <div id="messagePassword"></div>
+    <input name="password" type="password" value="" id="password"/><br/>
     <br>
     <label for="name">Name:</label><br>
-    <input type="text" value="" id="name"/><br/>
-    <div id="messageName"></div>
+    <input name="name" type="text" value="" id="name"/><br/>
     <br>
     <label for="birthday">Birthday:</label><br>
-    <input type="text" value="" id="birthday" placeholder="YYYY-MM-DD"/><br/>
-    <div id="messageBirthday"></div>
+    <input name="birthday" type="text" value="" id="birthday" placeholder="YYYY-MM-DD" required/><br/>
     <br>
     <label for="mail">Mail:</label><br>
-    <input type="text" value="" id="mail"/><br/>
-    <div id="messageMail"></div>
+    <input name="mail" type="email" value="" id="mail"/><br/>
     <br>
-    <input type="button" value="Submit" onclick="validate()"/>
+    <button value="Submit" type="submit">Submit</button>
 </form>
 <script language="javascript">
-    let loginID = document.getElementById("loginID");
-    let messageLoginID = document.getElementById("messageLoginID");
-    let passW = document.getElementById("password");
-    let messagePassW = document.getElementById("messagePassword");
-    let name = document.getElementById("name");
-    let messageName = document.getElementById("messageName");
-    let birth = document.getElementById("birthday");
-    let messageBirth = document.getElementById("messageBirthday");
-    let mail = document.getElementById("mail");
-    let messageMail = document.getElementById("messageMail");
-    function validate() {
-        if (!loginID.value) {
-            messageLoginID.innerHTML = "Can not be empty";
-            loginID.classList.add('validate-error');
-        } else if (!loginID.value.match(/^[a-zA-Z]+$/)) {
-            messageLoginID.innerHTML = "Please Enter only alphabets in text";
-            loginID.classList.add('validate-error');
-            loginID.value = "";
-        } else {
-            messageLoginID.innerHTML = "";
-            loginID.classList.remove('validate-error');
-        }
-        if (!passW.value) {
-            messagePassW.innerHTML = "Can not be empty";
-            passW.classList.add('validate-error');
-        } else if (passW.value.length < 8) {
-            messagePassW.innerHTML = "You have entered less than 8 characters for password";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else if (!passW.value.match(/^\S{3,}$/)) {
-            messagePassW.innerHTML = "White Space not allowed";
-            passW.classList.add('validate-error');
-            passW.value = "";
-        } else {
-            messagePassW.innerHTML = "";
-            passW.classList.remove('validate-error');
-        }
-        if (!name.value) {
-            messageName.innerHTML = "Can not be empty";
-            name.classList.add('validate-error');
-        } else if (!name.value.match(/^\S{3,}$/)) {
-            messageName.innerHTML = "You have entered less than 50 characters for name";
-            name.classList.add('validate-error');
-            name.value = "";
-        } else {
-            messageName.innerHTML = "";
-            name.classList.remove('validate-error');
-        }
-        if (!birth.value) {
-            messageBirth.innerHTML = "Can not be empty";
-            birth.classList.add('validate-error');
-        } else if (!birth.value.match(/(\d{4})-(\d{2})-(\d{2})/)) {
-            messageBirth.innerHTML = "format must be YYYY-MM-DD";
-            birth.classList.add('validate-error');
-            birth.value = "";
-        } else {
-            messageBirth.innerHTML = "";
-            birth.classList.remove('validate-error');
-        }
-        if (!mail.value) {
-            messageMail.innerHTML = "Can not be empty";
-            mail.classList.add('validate-error');
-        } else if (!mail.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-            messageMail.innerHTML = "You have entered format username@gmail.com";
-            mail.classList.add('validate-error');
-            mail.value = "";
-        } else {
-            messageMail.innerHTML = "";
-            mail.classList.remove('validate-error');
-        }
-    }
+    $(function () {
+        $("#formDemo").validate({
+            rules: {
+                login: {
+                    required: true,
+                    pattern: "^[a-zA-Z]+$"
+                },
+                password: {
+                    required: true,
+                    minlength: 8,
+                    pattern: "^\\S{3,}$",
+                },
+                name: {
+                    required: true,
+                    maxlength: 50,
+                },
+                birthday: {
+                    required: true,
+                    pattern: "(\\d{4})-(\\d{2})-(\\d{2})"
+                },
+                mail: {
+                    required: true,
+                }
+            },
+            messages: {
+                login: {
+                    required: "Can not be empty",
+                    pattern: "Please enter only alphabets in text",
+                },
+                password: {
+                    required: "Can not be empty",
+                    pattern: "White space not allowed",
+                    minlength: "You have entered less than 8 characters for password"
+                },
+                name: {
+                    required: "Can not be empty",
+                    maxlength: "You have entered less than 50 characters for name"
+                },
+                birthday: {
+                    required: "Can not be empty",
+                    pattern: "Format must be YYYY-MM-DD"
+                },
+                mail: {
+                    required: "Can not be empty"
+                }
+            },
+        });
+        $("button").click(function () {
+            if ($("#formDemo").valid()) {
+                alert("Form Submitted");
+            }
+        });
+    })
 </script>
 </body>
 </html>
