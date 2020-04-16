@@ -1,45 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/datepicker.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <title>Animation</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <form action="" class="login-form" id="loginForm" method="get">
-            <h1>Login</h1>
-            <div class="txtb">
-                <input type="text" placeholder="Username" id="username" name="username"/>
+<header id="header__top">
+    <div class="header__top__container">
+        <div class="header__top">
+            <h1 class="header__logo__top">
+                <a href="index.html"><img src="./assets/img/logo_top.png" alt="logo_top"></a>
+            </h1>
+            <div class="header__btn__shop">
+                <a href="index.html" class="header__links__shop">レポート購入</a>
             </div>
-            <div class="txtb">
-                <input type="password" placeholder="Password" id="password" name="password" minlength="8"/>
+        </div>
+        <nav>
+            <ul class="header__top__menu">
+                <li class="header_top__menu_items">
+                    <a href="index.html" class="header__top__menu_links">トップ</a>
+                </li>
+                <li class="header_top__menu_items">
+                    <a href="index.html" class="header__top__menu_links">メリット</a>
+                </li>
+                <li class="header_top__menu_items">
+                    <a href="index.html" class="header__top__menu_links">サンプル</a>
+                </li>
+                <li class="header_top__menu_items">
+                    <a href="index.html" class="header__top__menu_links">目 次</a>
+                </li>
+                <li class="header_top__menu_items">
+                    <a href="index.html" class="header__top__menu_links">お問い合わせ</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="slider" class="slider">
+            <div class="slider_container">
+                <h1>
+                    <img src="./assets/img/ttl_slider_pc_2019.png" alt="" class="switch" style="visibility: visible;">
+                </h1>
+                <div class="slider_bg01"></div>
+                <div class="slider_bg02"></div>
             </div>
-            <div class="txtb">
-                <input type="text" placeholder="Name" id="fullname" name="fullname" maxlength="50"/>
-            </div>
-            <div class="txtb">
-                <input  type="text"  id="birthday" name="birthday" placeholder="Birthday"/>
-            </div>
-            <div class="txtb">
-                <input type="text" placeholder="Email" id="email" name="email"/>
-            </div>
-            <input type="submit" class="logbtn" value="Login"/>
-            <div class="bottom-text">
-                Don't have account? <a href="#">Sign up</a>
-            </div>
-    </form>
-    <script src="./assets/js/jquery.min.js"></script>
-    <script src="./assets/js/moment.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <script src="./assets/js/bootstrap-datepicker.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/additional-methods.min.js"></script>
-    <script src="./assets/js/function.js"></script>
+        </div>
+    </div>
+</header>
 </body>
 </html>
